@@ -1,6 +1,7 @@
 package com.warders.api.auth.controller;
 
 import com.warders.api.auth.controller.dto.SignInRequest;
+import com.warders.api.auth.controller.dto.SignInResponse;
 import com.warders.api.auth.controller.dto.SignUpRequest;
 import com.warders.api.auth.service.AuthService;
 import com.warders.api.user.domain.User;
@@ -27,8 +28,8 @@ public class AuthController {
 
     @Operation(summary = "로그인", description = "로그인", tags = { "Auth Controller" })
     @PostMapping("/login")
-    public String login(@RequestBody @Valid SignInRequest request) {
-        return authService.login(request);
+    public SignInResponse login(@RequestBody @Valid SignInRequest request) {
+        return new SignInResponse(authService.login(request));
     }
 
 }
