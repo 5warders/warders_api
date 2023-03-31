@@ -22,8 +22,8 @@ public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "seq", updatable = false, nullable = false)
-    private Long seq;
+    @Column(name = "user_id", updatable = false, nullable = false)
+    private Long userId;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -37,8 +37,8 @@ public class User extends BaseTimeEntity {
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
-    @Column(name = "nickname", nullable = false)
-    private String nickname;
+    @Column(name = "userName", nullable = false)
+    private String userName;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)

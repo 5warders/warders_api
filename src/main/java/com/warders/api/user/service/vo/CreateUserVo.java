@@ -16,14 +16,14 @@ public class CreateUserVo {
 
     private String phoneNumber;
 
-    private String nickname;
+    private String userName;
 
     public static CreateUserVo of(final SignUpRequest request) {
         return CreateUserVo.builder()
             .email(request.email())
             .password(request.password())
             .name(request.name())
-            .nickname(request.nickname())
+            .userName(request.userName())
             .phoneNumber(request.phoneNumber())
             .build();
     }

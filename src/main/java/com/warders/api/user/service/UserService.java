@@ -32,7 +32,7 @@ public class UserService {
         final User user = User.builder()
             .email(createUserVo.getEmail())
             .name(createUserVo.getName())
-            .nickname(createUserVo.getNickname())
+            .userName(createUserVo.getUserName())
             .password(bCryptPasswordEncoder.encode(createUserVo.getPassword()))
             .phoneNumber(createUserVo.getPhoneNumber())
             .role(Role.ROLE_USER)

@@ -24,7 +24,7 @@ public class AuthService {
         final User user = userService.getUserByEmail(request.email());
 
         userService.validatePassword(request.password(), user.getPassword());
-        return tokenProvider.generateToken(user.getSeq().toString(), user.getRole());
+        return tokenProvider.generateToken(user.getUserId().toString(), user.getRole());
     }
 
 }
