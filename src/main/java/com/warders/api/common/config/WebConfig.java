@@ -15,9 +15,10 @@ public class WebConfig implements WebMvcConfigurer {
         resolvers.add(new UserIdArgumentResolver());
     }
 
+    // TODO 개발 편의를 위해 모두 개방 (운영시 수정필요)
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOrigins("http://localhost:3000");
+            .allowedOrigins("*");
     }
 }
