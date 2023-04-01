@@ -7,7 +7,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
 server:
@@ -15,3 +15,14 @@ server:
 
 jwt:
   secret: secretKey
+
+cloud:
+  aws:
+    credentials:
+      access-key: jA0JvpSbkEhHBCxjTZPY
+      secret-key: si7IvshbJjDH1QzhNPkwrCUsuGjRXARjpf5aB537
+    s3:
+      bucket: 5warders-bucket
+    region:
+      static: kr-standard
+    endpoint: https://kr.object.ncloudstorage.com
