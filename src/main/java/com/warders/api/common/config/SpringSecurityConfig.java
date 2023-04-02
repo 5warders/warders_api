@@ -23,9 +23,14 @@ public class SpringSecurityConfig {
     private final JwtTokenProvider jwtTokenProvider;
 
     private static final String[] WHITELIST = {
-        "/v1/auth/**", "/swagger-ui/**", "/v3/api-docs/**"
+        "/swagger-ui/**", "/v3/api-docs/**"
     };
     private static final String PROFILE_PATH = "/v1/profiles/**";
+    private static final String ADMIN_PROFILE_PATH = "/v1/admin/profiles/**";
+    private static final String[] AUTH_PATH = {
+        "/v1/auth/**",
+        "/v1/admin/auth/**"
+    };
 
     @Bean
     protected SecurityFilterChain config(HttpSecurity http) throws Exception {
@@ -36,8 +41,17 @@ public class SpringSecurityConfig {
             .and()
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(WHITELIST).permitAll()
+
+                // Auth
+                .requestMatchers(HttpMethod.POST, AUTH_PATH).permitAll()
+                .requestMatchers(HttpMethod.DELETE, AUTH_PATH).authenticated()
+
+                // Profile
                 .requestMatchers(HttpMethod.GET, PROFILE_PATH).permitAll()
                 .requestMatchers(HttpMethod.POST, PROFILE_PATH).hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE, PROFILE_PATH).hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE, ADMIN_PROFILE_PATH).hasRole("ADMIN")
+
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)

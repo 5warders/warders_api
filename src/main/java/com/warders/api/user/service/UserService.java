@@ -1,10 +1,11 @@
 package com.warders.api.user.service;
 
 import com.warders.api.common.exception.error.ErrorCode;
-import com.warders.api.user.domain.Role;
 import com.warders.api.user.domain.User;
+import com.warders.api.user.domain.UserStatus;
 import com.warders.api.user.repository.UserRepository;
 import com.warders.api.user.service.vo.CreateUserVo;
+import jakarta.transaction.Transactional;
 import java.util.InputMismatchException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
@@ -35,7 +36,8 @@ public class UserService {
             .userName(createUserVo.getUserName())
             .password(bCryptPasswordEncoder.encode(createUserVo.getPassword()))
             .phoneNumber(createUserVo.getPhoneNumber())
-            .role(Role.ROLE_USER)
+            .role(createUserVo.getRole())
+            .userStatus(UserStatus.NORMAL)
             .build();
 
         return userRepository.save(user);
@@ -50,6 +52,13 @@ public class UserService {
 
     public User getUser(Long id) {
         return userRepository.findById(id).orElseThrow();
+    }
+
+    @Transactional
+    public void withdrawUser(Long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setUserStatus(UserStatus.WITHDRAWAL);
+        userRepository.save(user);
     }
 
 }

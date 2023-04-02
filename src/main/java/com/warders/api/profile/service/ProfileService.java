@@ -9,6 +9,7 @@ import com.warders.api.profile.domain.Profile;
 import com.warders.api.profile.domain.mapper.ProfileDtoMapper;
 import com.warders.api.profile.repository.CommentRepository;
 import com.warders.api.profile.repository.ProfileRepository;
+import com.warders.api.user.domain.User;
 import com.warders.api.user.service.UserService;
 import jakarta.transaction.Transactional;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.webjars.NotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -54,6 +56,24 @@ public class ProfileService {
         profileRepository.save(profile);
 
         return new ProfileUploadResponse(imageUrl);
+    }
+
+    @Transactional
+    public void removeProfile(final Long profileId, final Long userId) {
+        User user = userService.getUser(userId);
+
+        if (!profileRepository.existsByProfileIdAndUser(profileId, user)) {
+            throw new NotFoundException("해당 사용자에게 존재하지 않는 프로필 입니다.");
+        }
+        profileRepository.deleteByProfileIdAndUser(profileId, user);
+    }
+
+    @Transactional
+    public void removeProfile(final Long profileId) {
+        if (!profileRepository.existsById(profileId)) {
+            throw new NotFoundException("존재하지 않는 프로필 입니다.");
+        }
+        profileRepository.deleteById(profileId);
     }
 
     public void writeComment(final Long profileId, final Long writeUserId, final String content) {
