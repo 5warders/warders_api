@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,13 @@ public class ProfileController {
     public ProfileUploadResponse uploadProfile(@RequestParam("image") MultipartFile imageFile, ProfileCreationRequest request, @InjectUserId Long userId)
         throws IOException {
         return profileService.uploadProfile(imageFile, request.description(), userId);
+    }
+
+    @Operation(summary = "프로필 삭제", description = "프로필 삭제", tags = { "Profile Controller" })
+    @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
+    @DeleteMapping("/{id}")
+    public void removeProfile(@PathVariable("id") Long profileId, @InjectUserId Long userId) {
+        profileService.removeProfile(profileId, userId);
     }
 
     @Operation(summary = "댓글 등록", description = "댓글 등록", tags = { "Profile Controller" })

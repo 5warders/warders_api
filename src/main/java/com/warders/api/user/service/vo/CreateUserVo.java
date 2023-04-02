@@ -1,6 +1,7 @@
 package com.warders.api.user.service.vo;
 
 import com.warders.api.auth.controller.dto.SignUpRequest;
+import com.warders.api.user.domain.Role;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -18,13 +19,16 @@ public class CreateUserVo {
 
     private String userName;
 
-    public static CreateUserVo of(final SignUpRequest request) {
+    private Role role;
+
+    public static CreateUserVo of(final SignUpRequest request, final Role role) {
         return CreateUserVo.builder()
             .email(request.email())
             .password(request.password())
             .name(request.name())
             .userName(request.userName())
             .phoneNumber(request.phoneNumber())
+            .role(role)
             .build();
     }
 

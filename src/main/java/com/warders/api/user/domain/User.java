@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
@@ -46,6 +47,10 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
+
+    @Setter
+    @Column(name = "user_status", nullable = false)
+    private UserStatus userStatus;
 
     @OneToMany(mappedBy = "user")
     private List<Profile> profiles;
