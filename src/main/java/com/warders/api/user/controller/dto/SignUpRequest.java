@@ -1,4 +1,4 @@
-package com.warders.api.auth.controller.dto;
+package com.warders.api.user.controller.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

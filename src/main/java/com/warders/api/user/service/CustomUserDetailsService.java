@@ -1,4 +1,4 @@
-package com.warders.api.auth.service;
+package com.warders.api.user.service;
 
 import com.warders.api.common.exception.error.ErrorCode;
 import com.warders.api.user.domain.User;

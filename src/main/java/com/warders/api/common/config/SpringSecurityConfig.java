@@ -28,8 +28,8 @@ public class SpringSecurityConfig {
     private static final String PROFILE_PATH = "/v1/profiles/**";
     private static final String ADMIN_PROFILE_PATH = "/v1/admin/profiles/**";
     private static final String[] AUTH_PATH = {
-        "/v1/auth/**",
-        "/v1/admin/auth/**"
+        "/v1/users/**",
+        "/v1/admin/**"
     };
 
     @Bean

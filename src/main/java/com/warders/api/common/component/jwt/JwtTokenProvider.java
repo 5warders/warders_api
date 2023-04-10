@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.warders.api.auth.service.CustomUserDetailsService;
+import com.warders.api.user.service.CustomUserDetailsService;
 import com.warders.api.user.domain.Role;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Date;

@@ -1,12 +1,11 @@
-package com.warders.api.auth.service;
+package com.warders.api.user.service;
 
-import com.warders.api.auth.controller.dto.SignInRequest;
-import com.warders.api.auth.controller.dto.SignUpRequest;
 import com.warders.api.common.component.jwt.JwtTokenProvider;
+import com.warders.api.user.controller.dto.SignInRequest;
+import com.warders.api.user.controller.dto.SignUpRequest;
 import com.warders.api.user.domain.Role;
 import com.warders.api.user.domain.User;
 import com.warders.api.user.domain.UserStatus;
-import com.warders.api.user.service.UserService;
 import com.warders.api.user.service.vo.CreateUserVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

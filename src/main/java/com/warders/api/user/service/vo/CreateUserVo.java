@@ -1,6 +1,6 @@
 package com.warders.api.user.service.vo;
 
-import com.warders.api.auth.controller.dto.SignUpRequest;
+import com.warders.api.user.controller.dto.SignUpRequest;
 import com.warders.api.user.domain.Role;
 import lombok.Builder;
 import lombok.Getter;
